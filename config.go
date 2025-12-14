@@ -7,8 +7,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var ModelsFolder string = "models"         // default
-var MigrationsFolder string = "migrations" // default
+var ModelsFolder string = "models"        // default
+var MigrationsFolder string = "migration" // default
 
 func LoadConfig() {
 	err := godotenv.Load()
