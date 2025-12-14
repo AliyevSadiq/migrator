@@ -7,7 +7,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var ModelsFolder string = "models" // default
+var ModelsFolder string = "models"         // default
+var MigrationsFolder string = "migrations" // default
 
 func LoadConfig() {
 	err := godotenv.Load()
@@ -17,5 +18,14 @@ func LoadConfig() {
 
 	if folder := os.Getenv("MODELS_FOLDER"); folder != "" {
 		ModelsFolder = folder
+	}
+
+	if folder := os.Getenv("MIGRATIONS_FOLDER"); folder != "" {
+		MigrationsFolder = folder
+	}
+
+	// Create migrations folder if not exists
+	if _, err := os.Stat(MigrationsFolder); os.IsNotExist(err) {
+		os.Mkdir(MigrationsFolder, os.ModePerm)
 	}
 }
